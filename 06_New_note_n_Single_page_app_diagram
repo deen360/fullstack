@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+
+    Browser->>+Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate Server
+    Server-->>-Browser: HTML Document
+    deactivate Server
+
+    Browser->>+Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate Server
+    Server-->>-Browser: main.css file
+    deactivate Server
+
+    Browser->>+Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate Server
+    Server-->>-Browser: spa.js file
+    deactivate Server
+
+    Browser->>+Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate Server
+    Server-->>-Browser: [{"content":"lets do this","date":"2023-05-06T15:06:44.848Z"}.....]
+    deactivate Server
+
+    Browser->>+Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate Server
+    Server-->>-Browser: HTTP status code 302
+    deactivate Server
+    
