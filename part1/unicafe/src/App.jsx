@@ -2,41 +2,30 @@ import { useState } from 'react'
 
 const Header = ({text}) => {return(<h1> {text}</h1> )};
 
-const All = ({text, A,B,C}) => {
+const StatisticLine = ({text, value}) => { return( <tr> {text}  <td> {value} </td> </tr>  )}
 
-  return(
-     <p> {text} {A + B + C} </p>
-     )};
+const Statistics = ({good,neutral,bad}) => {
+  let total = good + neutral + bad;
+  let avg = (good * 1 + neutral * 0 + bad * -1) / total;
+  let pos = (good * 100) / (total) + " %"  ;
+  
+  if(total === 0){
+    return(<> <p> No feedback given </p></>)}
 
-
-const Statistics = ({text, A,B,C}) => {
-  if(A === 0 &&  B === 0 && C === 0){
-    return(<>
-    <h1> statistics </h1>
-    <p> No feedback given </p> 
-  </>)
-  }
-  return(<> <h1> statistics </h1>
-   <p> {text} {(A * 1 + B * 0 + C * -1) / (A + B + C) } </p> 
-<p> positive {(A * 100) / (A + B + C) } % </p> 
-</> )};
-
-
-const Result = ({text, value}) => { return(
-  <> <p> {text}  {value} </p> </>
-)}
-
+  return (<table>
+      <StatisticLine text='good' value={good} />
+      <StatisticLine text='neutral' value={neutral} />
+      <StatisticLine text='bad' value={bad} />
+      <StatisticLine text='all' value={total} />
+      <StatisticLine text='average' value={avg} />
+      <StatisticLine text='positve' value={pos} />
+      </table>)
+}
 const Button = ({text,counter,setCounter}) => {
 
-  const handleclick= () => {return( setCounter(counter + 1))}
-  return(
-    <> 
-    <button onClick={handleclick}>
-      {text} 
-    </button>
-    
-    </>
-  )}
+  const handleClick= () => {return( setCounter(counter + 1))}
+  
+  return(<> <button onClick={handleClick}>{text} </button></>)};
 
 const App = () => {
   // save clicks of each button to its own state
@@ -51,14 +40,8 @@ const App = () => {
       <Button text='neutral'  counter={neutral} setCounter={setNeutral}   />
       <Button  text='bad' counter={bad} setCounter={setBad}/>
       
-
-      
-      <Result text='good' value={good} />
-      <Result text='neutral' value={neutral} />
-      <Result text='bad' value={bad} />
-      <All text="all" A={good}  B={neutral} C={bad} />
-
-      <Statistics text="average" A={good}  B={neutral} C={bad} />
+      <Header text='statistics'/> 
+      <Statistics good={good}  neutral={neutral} bad={bad} />
 
     </div>
   )
