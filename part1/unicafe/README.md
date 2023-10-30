@@ -1,8 +1,12 @@
-# React + Vite
+**Unicafe Feedback App**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a web application designed to collect customer feedback for the student restaurant at the University of Helsinki, known as Unicafe. The application offers three options for feedback: good, neutral, and bad. It operates within a single browser session, and feedback is reset upon page refresh.
 
-Currently, two official plugins are available:
+**Features**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Collect customer feedback (good, neutral, bad).
+- Display statistics based on the gathered feedback:
+  - Total number of feedback received.
+  - Average score calculation (good: 1, neutral: 0, bad: -1).
+  - Percentage of positive feedback.
+- Statistics are displayed once feedback has been gathered.
